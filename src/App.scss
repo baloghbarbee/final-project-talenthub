@@ -78,7 +78,7 @@ body {
                 color: $purplishblue;
             }
         }
-        .notsuccess {
+        .notSuccess {
             font-size: 12px;
             display: flex;
             color: $strawberryred;
@@ -122,6 +122,14 @@ body {
                 &:hover {
                     background-color: $lightblue;
                 }
+            }
+        }
+    }
+    .bottomPart {
+        .listOfAttendees{
+            .attendee {
+                display: flex;
+                justify-content: space-around;
             }
         }
     }

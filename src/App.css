@@ -68,7 +68,7 @@ body .form .leftPart {
 body .form .leftPart p {
   color: hsl(243, 100%, 62%);
 }
-body .form .notsuccess {
+body .form .notSuccess {
   font-size: 12px;
   display: flex;
   color: hsl(354, 84%, 57%);
@@ -112,4 +112,8 @@ body .form .imageUpload button {
 }
 body .form .imageUpload button:hover {
   background-color: hsl(206, 94%, 87%);
+}
+body .bottomPart .listOfAttendees .attendee {
+  display: flex;
+  justify-content: space-around;
 }/*# sourceMappingURL=App.css.map */
