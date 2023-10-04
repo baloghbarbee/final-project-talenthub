@@ -1,0 +1,119 @@
+body {
+  font-size: 16px;
+  text-align: left;
+  background-color: hsl(217, 100%, 97%);
+}
+body .form {
+  min-width: 400px;
+  min-height: 650px;
+  background-color: hsl(0, 0%, 100%);
+  border: 0.5px solid transparent;
+  border-radius: 25px;
+  box-shadow: 12px 12px 15px 0px hsl(229, 24%, 87%);
+  margin-left: 35%;
+  margin-right: 35%;
+}
+body .form .name {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+  display: flex;
+  color: hsl(213, 96%, 18%);
+  justify-content: space-between;
+  font-size: 10px;
+  align-items: center;
+}
+body .form .name input {
+  border: 1px solid hsl(231, 11%, 63%);
+  border-radius: 10px;
+  padding: 5px;
+  height: 20px;
+  width: 190px;
+  justify-content: center;
+}
+body .form .name input:focus {
+  background-color: hsl(206, 94%, 87%);
+}
+body .form .name input:focus-visible {
+  outline: transparent;
+}
+body .form .title {
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 5px;
+  display: flex;
+  color: hsl(213, 96%, 18%);
+  justify-content: space-between;
+  font-size: 10px;
+  align-items: center;
+}
+body .form .title input {
+  border: 1px solid hsl(231, 11%, 63%);
+  padding: 5px;
+  height: 20px;
+  width: 190px;
+  justify-content: center;
+  border-radius: 10px;
+}
+body .form .title input:focus {
+  background-color: hsl(206, 94%, 87%);
+}
+body .form .title input:focus-visible {
+  outline: transparent;
+}
+body .form .leftPart {
+  display: flex;
+  gap: 5px;
+}
+body .form .leftPart p {
+  color: hsl(243, 100%, 62%);
+}
+body .form .notSuccess {
+  font-size: 12px;
+  display: flex;
+  color: hsl(354, 84%, 57%);
+  justify-content: right;
+  margin-right: 15px;
+}
+body .form .imageUpload {
+  font-size: 10px;
+}
+body .form .imageUpload h1 {
+  font-size: 2em;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 15px;
+  display: flex;
+  color: hsl(213, 96%, 18%);
+  justify-content: space-between;
+  align-items: center;
+}
+body .form .imageUpload input {
+  margin: 15px;
+  display: flex;
+  color: hsl(213, 96%, 18%);
+  font-size: 14px;
+  padding: 10px;
+}
+body .form .imageUpload img {
+  height: 170px;
+}
+body .form .imageUpload button {
+  width: 90%;
+  height: 45px;
+  margin-left: 15px;
+  margin-right: 15px;
+  margin-top: 20px;
+  border-radius: 10px;
+  border: 2px solid hsl(228, 100%, 84%);
+  font-size: 19px;
+  font-weight: bold;
+  color: hsl(213, 96%, 18%);
+}
+body .form .imageUpload button:hover {
+  background-color: hsl(206, 94%, 87%);
+}
+body .bottomPart .listOfAttendees .attendee {
+  display: flex;
+  justify-content: space-around;
+}/*# sourceMappingURL=App.css.map */
