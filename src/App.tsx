@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import './App.css'
 import { isMailValid, isNameValid, isBirthdateValid, isLengthValid, ageValidation } from './formUtils.ts'
-// import AttendeesList from './AttendeesList'
-// import ImageUpload from './ImageUpload'
+import AttendeesList from './AttendeesList'
+import ImageUpload from './ImageUpload'
 
 
 function App() {
@@ -13,10 +13,10 @@ function App() {
   const [errors, setErrors] = useState<string[]>([]);
 
 
-  function validate (parameterBeforeField: boolean, field: string) {
-    if (parameterBeforeField) {
+  function validate (isValid: boolean, field: string) {
+    if (isValid) {
       if (errors.includes(field)) {
-        setErrors(errors.filter((oneOfTheArrays) => oneOfTheArrays !== field));
+        setErrors(errors.filter((err) => err !== field));
       }
     } else {
       if (!errors.includes(field)) {
@@ -26,7 +26,7 @@ function App() {
   } 
   
  //EMAIL
- 
+
   function handleEmailInputChange({target}: React. ChangeEvent<HTMLInputElement> ) {
     setEmail(target.value);
     validate(isMailValid(target.value), 'mail');
@@ -79,7 +79,7 @@ function App() {
           </div>
           <input style={(errors.includes('mail') && email !== '') ? styleError : undefined} placeholder="email@company.com" maxLength={80} minLength={3} onChange={handleEmailInputChange}></input>
         </div>
-        {errors.includes('mail') && email !== '' && (<div className="notSuccess">Valid email required(input must be at least 3 characters long)</div>)}
+        {errors.includes('mail') && email !== '' && (<div className="notSuccess">Valid email required (input must be at least 3 characters long)</div>)}
         <div className='title'>
           <div className='leftPart'>
             <h1>Birthdate</h1> 
@@ -87,18 +87,18 @@ function App() {
           </div>
           <input style={(errors.includes('birthdate') && birthdate !== '') ? styleError : undefined} placeholder="15.07.2000" maxLength={10} onChange={handleBirthdateInputChange}></input>
         </div>
-        {errors.includes('birthdate') && birthdate !== '' && (<div className="notSuccess">Valid birthdate required(age must be between 18-99)</div>)}
+        {errors.includes('birthdate') && birthdate !== '' && (<div className="notSuccess">Valid birthdate required (age must be between 18-99)</div>)}
         <div className='title'>
           <h1>More info</h1>
           <input onChange={handleMoreInfoInputChange}></input>
         </div>
         <div className='imageUpload'>
-          {/* <ImageUpload /> */}
+          <ImageUpload />
           <button type='submit' style={{ cursor: errors.length !== 0 || birthdate === '' || name === '' || email === '' ? 'not-allowed' : 'pointer' }} disabled={errors.length > 0 || birthdate === '' || name === '' || email === ''}>Submit</button>
         </div>
       </div>
       <div className='bottomPart'>
-        {/* <AttendeesList /> */}
+        <AttendeesList />
       </div>
     </div>
   );
