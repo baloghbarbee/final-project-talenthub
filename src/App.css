@@ -4,13 +4,13 @@ body {
   background-color: hsl(217, 100%, 97%);
 }
 body .form {
-  min-width: 400px;
   background-color: hsl(0, 0%, 100%);
   border: 0.5px solid transparent;
   border-radius: 25px;
   box-shadow: 12px 12px 15px 0px hsl(229, 24%, 87%);
   margin-left: 35%;
   margin-right: 35%;
+  margin-bottom: 30px;
 }
 body .form .name {
   margin-left: 15px;
@@ -21,6 +21,13 @@ body .form .name {
   justify-content: space-between;
   font-size: 10px;
   align-items: center;
+}
+body .form .name .leftPart {
+  display: flex;
+  gap: 5px;
+}
+body .form .name .leftPart p {
+  color: hsl(243, 100%, 62%);
 }
 body .form .name input {
   border: 1px solid hsl(231, 11%, 63%);
@@ -46,6 +53,13 @@ body .form .title {
   font-size: 10px;
   align-items: center;
 }
+body .form .title .leftPart {
+  display: flex;
+  gap: 5px;
+}
+body .form .title .leftPart p {
+  color: hsl(243, 100%, 62%);
+}
 body .form .title input {
   border: 1px solid hsl(231, 11%, 63%);
   padding: 5px;
@@ -60,13 +74,6 @@ body .form .title input:focus {
 body .form .title input:focus-visible {
   outline: transparent;
 }
-body .form .leftPart {
-  display: flex;
-  gap: 5px;
-}
-body .form .leftPart p {
-  color: hsl(243, 100%, 62%);
-}
 body .form .notSuccess {
   font-size: 12px;
   display: flex;
@@ -74,10 +81,10 @@ body .form .notSuccess {
   justify-content: right;
   margin-right: 15px;
 }
-body .form .imageUpload {
+body .form .uploadAndPreview .imageUpload {
   font-size: 10px;
 }
-body .form .imageUpload h1 {
+body .form .uploadAndPreview .imageUpload h1 {
   font-size: 2em;
   margin-left: 15px;
   margin-right: 15px;
@@ -87,23 +94,23 @@ body .form .imageUpload h1 {
   justify-content: space-between;
   align-items: center;
 }
-body .form .imageUpload input {
+body .form .uploadAndPreview .imageUpload input {
   margin: 15px;
   display: flex;
   color: hsl(213, 96%, 18%);
   font-size: 14px;
   padding: 10px;
 }
-body .form .imageUpload p {
+body .form .uploadAndPreview .imageUpload p {
   display: flex;
   font-size: 15px;
   margin-left: 15px;
   color: hsl(354, 84%, 57%);
 }
-body .form .imageUpload .imagePreview {
+body .form .uploadAndPreview .imagePreview {
   height: 300px;
 }
-body .form .imageUpload .imagePreview .removeImageButton {
+body .form .uploadAndPreview .imagePreview .removeImageButton {
   display: flex;
   height: 30px;
   width: 40%;
@@ -116,16 +123,16 @@ body .form .imageUpload .imagePreview .removeImageButton {
   align-content: center;
   justify-content: center;
 }
-body .form .imageUpload .imagePreview .removeImageButton:hover {
+body .form .uploadAndPreview .imagePreview .removeImageButton:hover {
   background-color: hsl(206, 94%, 87%);
   cursor: pointer;
 }
-body .form .imageUpload .imagePreview img {
+body .form .uploadAndPreview .imagePreview .uploadedImage {
   height: 200px;
   width: 90%;
   margin: 10px 15px 10px 15px;
 }
-body .form .imageUpload button {
+body .form .submit {
   width: 90%;
   height: 45px;
   margin-left: 15px;
@@ -138,10 +145,87 @@ body .form .imageUpload button {
   font-weight: bold;
   color: hsl(213, 96%, 18%);
 }
-body .form .imageUpload button:hover {
+body .form .submit:hover {
   background-color: hsl(206, 94%, 87%);
 }
 body .bottomPart .listOfAttendees .attendee {
+  height: 75px;
   display: flex;
   justify-content: space-around;
+  border: transparent;
+  border-radius: 15px;
+  margin: 10px;
+  box-shadow: 2px 2px 15px 12px hsl(228, 100%, 84%);
+  background-color: hsl(206, 94%, 87%);
+}
+body .bottomPart .listOfAttendees .attendee .fieldName {
+  font-size: 15px;
+}
+body .bottomPart .listOfAttendees .attendee .fieldName h1 {
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+body .bottomPart .listOfAttendees .attendee .fieldName p {
+  margin-top: 4px;
+  margin-bottom: 4px;
+  padding-bottom: 4px;
+}
+body .bottomPart .listOfAttendees .attendee .fieldName img {
+  width: 80px;
+  height: 40px;
+}
+body .bottomPart .listOfAttendees .attendee .removeButton {
+  border: transparent;
+  background-color: transparent;
+  font-weight: bold;
+}
+body .bottomPart .listOfAttendees .attendee .removeButton:hover {
+  cursor: pointer;
+}
+
+@media only screen and (min-width: 821px) and (max-width: 1920px) {
+  .form {
+    min-width: 400px;
+    max-width: 500px;
+  }
+  .attendee {
+    max-width: 1200px;
+    margin-left: 10% !important;
+    margin-right: 10% !important;
+  }
+}
+@media only screen and (max-width: 768px) {
+  body {
+    width: 100%;
+  }
+  body .form {
+    width: 100% !important;
+    margin: 0px !important;
+  }
+  body .attendee {
+    margin-left: 0px !important;
+    width: 100%;
+  }
+  body .attendee .fieldName {
+    margin: 7px;
+    font-size: 10px !important;
+  }
+  body .attendee .fieldName h1 {
+    font-size: 12px !important;
+  }
+}
+@media only screen and (max-width: 820px) {
+  .form {
+    width: 100% !important;
+    margin: 0px !important;
+  }
+  .attendee {
+    margin-left: 0px !important;
+    margin-right: 0px !important;
+    width: 100%;
+  }
+  .attendee .fieldName {
+    margin: 7px;
+    font-size: 12px !important;
+  }
 }/*# sourceMappingURL=App.css.map */
