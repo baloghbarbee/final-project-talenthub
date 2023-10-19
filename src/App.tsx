@@ -6,13 +6,13 @@ import Form from './Form'
 
 
 function App() {
-  const [newData, setNewData] = useState();
+  const [data, setData] = useState<Attendee[]>([]);
   
   useEffect(() => {
-    displayedUpdatedData();
+    getData();
   },[]);  
 
-const saveData = (data: any) => {
+const saveData = (data: Attendee) => {
   fetch('http://localhost:3000/attendees', {
     method: 'POST',
     headers: {
@@ -22,12 +22,12 @@ const saveData = (data: any) => {
   })
     .then((res) => res.json())
     .then(() => {
-      displayedUpdatedData();
+      getData();
     })
     .catch((err) => console.log('error', err))
 }
 
-const displayedUpdatedData = async () => {
+const getData = async () => {
   try {
     const response = await fetch('http://localhost:3000/attendees', {
       method: 'GET',
@@ -37,7 +37,7 @@ const displayedUpdatedData = async () => {
     }
 
     const result = await response.json();
-    setNewData(result);
+    setData(result);
   } catch (err) {
     console.error(err);
   }
@@ -48,7 +48,7 @@ const displayedUpdatedData = async () => {
     <>
       <Form saveDataFn={saveData}/>
       <div className='bottomPart'>
-        <AttendeesList dataFn={displayedUpdatedData} updatedData={newData} />
+        <AttendeesList dataFn={getData} attendees={data} setDataFn={setData} />
       </div>
     </>
   );
