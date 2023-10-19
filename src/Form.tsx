@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import './App.css'
 import { v4 as uuid } from 'uuid';
 import { isMailValid, isNameValid, isBirthdateValid, isLengthValid, ageValidation } from './formUtils.ts'
@@ -146,7 +146,6 @@ function Form(props: { saveDataFn: (arg0: Attendee) => void; }) {
                         <h1>Image preview</h1>
                         <button className='removeImageButton' onClick={removeImage}>Remove Image</button>            
                         <img className='uploadedImage' src={file}/>
-                        {/* <img className='uploadedImage' src={URL.createObjectURL(file)}/> */}
                     </div>
                 )
             }

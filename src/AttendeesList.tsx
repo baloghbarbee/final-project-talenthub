@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState} from 'react'
 import './App.css'
 
 export interface Attendee {  
@@ -10,48 +10,74 @@ export interface Attendee {
     "id": string;
 }
 
-function Attendees(props: { dataFn: () => void; updatedData: any}) {
-    const [attendeesData, setAttendeesData] = useState<Attendee[]>([]);
+interface Props {
+    dataFn: () => void; 
+    attendees: Attendee[]; 
+    setDataFn: (attendees: Attendee[]) => void;
+}
 
-    useEffect(() => {
-      fetch('http://localhost:3000/attendees', {
-        method: 'GET',
-      })
-        .then(response => {
-          if (response.ok) {
-            return response.json()
-            }
-            throw response;
-          })
-          .then((data) => {
+function Attendees(props: Props) {
+    const [editingId, setEditingId] = useState('');
+    const [text, setText] = useState('');
 
-            setAttendeesData(data);
-          })
-          .catch((err) => console.log(err));
-    },[]);
+    function handleEditClick(attendee: Attendee) {
+        setEditingId(attendee.id);
+        setText(attendee.moreInfo);
+    };
+
+    function handleChange(e: any) {
+        setText(e.target.value);
+    };
+
+    function handleSaveButtonClick() {
+            let updatedAttendees = props.attendees.map((attendee: Attendee) => {
+                if (attendee.id === editingId) {
+                    return {...attendee, moreInfo: text}
+                }
+                return attendee;
+            });
+            setEditingId('');
+            fetch(`http://localhost:3000/attendees/${editingId}`, {
+                method: 'PATCH',
+                headers: {
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ moreInfo: text }),
+            })
+            .then((response) => response.json())
+            .then(() => {
+                props.setDataFn(updatedAttendees); 
+            })
+            .catch((error) => {
+                console.error('Error updating data:', error);
+            });
+    };
+
+    function handleKeyDown(event: any) {
+        if (event.key === 'Enter' ) {
+            handleSaveButtonClick();
+        }
+    };
 
     function removeAttendee(id: string) {
         fetch(`http://localhost:3000/attendees/${id}`, {
             method: 'DELETE',
         })
-            .then(response => {
-            if (response.ok) {
-                return response.json()
-                }
-                throw response;
-            })
-            .then((data) => {
-
-                console.log(data, 'Marecekove bajky a vysvetlovania');
-                props.dataFn();
-            })
+        .then(response => {
+        if (response.ok) {
+            return response.json()
+            }
+            throw response;
+        })
+        .then(() => {
+            props.dataFn();
+        })
     }
-
 
     return (
         <div className='listOfAttendees'>
-            {(!props.updatedData ? attendeesData : props.updatedData).map((attendee: Attendee, index: any) => (
-                <div className='attendee' key={index}>
+            {(props.attendees).map((attendee: Attendee) => (
+                <div className='attendee' key={attendee.id}>
                     <div className='fieldName'>
                         <h1>#</h1>
                         <p>{attendee.id}</p>
@@ -70,9 +96,29 @@ function Attendees(props: { dataFn: () => void; updatedData: any}) {
                     </div>
                     <div className='fieldName'>
                         <h1>More info</h1>
-                        <p>{attendee.moreInfo}</p>
+                        <div className='moreInfoField'>
+                            {attendee.id === editingId ? (
+                            <>
+                                <input
+                                    type="text"
+                                    value={text}
+                                    onChange={handleChange} 
+                                    onKeyDown={handleKeyDown}
+                                />
+                                <button className='editingButtons' onClick={() => handleSaveButtonClick()}>
+                                    <img src='./src/assets/thick.png' alt=''/>
+                                </button>
+                            </>
+                            ) : (
+                            <>
+                                <p>{attendee.moreInfo}</p>
+                                <button className='editingButtons' onClick={() => handleEditClick(attendee)}>
+                                    <img src='./src/assets/edit.png' alt=''/>
+                                </button>
+                            </>
+                            )}
+                        </div>
                     </div>
-                    {/* <h1>Image {attendee.file}</h1> */}
                     <button className='removeButton' onClick={() => removeAttendee(attendee.id)}>X</button>
                 </div>
             ))}
@@ -81,3 +127,4 @@ function Attendees(props: { dataFn: () => void; updatedData: any}) {
 }
 
 export default Attendees;
+
